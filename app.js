@@ -28,10 +28,8 @@ for (let i = 0; i < randObj.images.length; i++) {
 let count = 9; //таймер для кнопки "закрыть"
 let interv = setInterval(() => {
   close.innerHTML = count--;
-  console.log(count);
   if(count == -1) {
     close.innerHTML = "";
-    console.log('done');
     close.style.cursor = 'pointer';
     close.onclick = () => {
       document.getElementById('app').style.display = 'none';

@@ -98,11 +98,37 @@ class Slider {
 				};
 			});
 	}
+	openImg() {
+		this.elem.style.position = 'absolute';
+		this.elem.style.top = '0';
+		this.elem.style.left = '0';
+		this.elem.style.width = '100%';
+		this.elem.style.height = '100%';
+		document.getElementsByClassName('buttonsslide')[0].style.marginTop = '50%';
+		document.getElementsByClassName('buttonsslide')[1].style.marginTop = '50%';
+		document.getElementById('butUp').style.height = '100%';
+		document.getElementById('butDown').style.height = '100%';
+		this.pugin.style.bottom = '-95%';
+		this.elem.style.opacity = '';
+	}
+	closeImg() {
+		this.elem.style.position = 'relative';
+		this.elem.style.top = '';
+		this.elem.style.left = '';
+		this.elem.style.width = '';
+		this.elem.style.height = '300px';
+		document.getElementsByClassName('buttonsslide')[0].style.marginTop = '108px';
+		document.getElementsByClassName('buttonsslide')[1].style.marginTop = '108px';
+		document.getElementById('butUp').style.height = '';
+		document.getElementById('butDown').style.height = '';
+		this.pugin.style.bottom = '-80%';
+	}
 	addPugs(c) {
 		this.pugin = document.createElement('div');
 		for(let i = 0; i < this.slides.length; i++) {
 			let a = document.createElement('input');
 			a.type = 'radio';
+			a.id = 'radio';
 			if(i === c) a.checked = 'checked';
 			this.pugin.appendChild(a);
 			a.addEventListener('click', (e) => {
@@ -120,7 +146,11 @@ class Slider {
 			});
 		};
 		this.pugin.style.position = 'relative';
-		this.pugin.style.bottom = '-80%';
+		if (this.elem.style.width == '100%') {
+			this.pugin.style.bottom = '-95%';
+		}else {
+			this.pugin.style.bottom = '-80%';
+		};
 		this.pugin.style.textAlign = 'center';
 		this.pugin.style.padding = '0';
 		this.elem.appendChild(this.pugin);
@@ -130,6 +160,35 @@ class Slider {
 		this.elem.style.backgroundSize = '70%';
 		this.elem.style.backgroundPosition = 'center';
 		this.elem.style.backgroundRepeat = 'no-repeat';
+		this.elem.addEventListener('click',(e) => {
+			if (e.target == document.getElementById('slider')) {
+				if(e.target.style.width == '100%') {
+					this.closeImg();
+				} else {
+					this.openImg();
+				};
+			};
+		});
+		this.elem.addEventListener('mousemove',(e) => {
+			if (e.target == document.getElementById('slider')) {
+				if(e.target.style.width == '100%') {
+					e.target.style.cursor = 'pointer';
+					e.target.style.opacity = '';
+				} else {
+					e.target.style.cursor = 'pointer';
+					e.target.style.opacity = '0.8';
+				};
+			};
+		});
+		this.elem.addEventListener('mouseout',(e) => {
+			if (e.target == document.getElementById('slider')) {
+				if(e.target.style.width == '100%') {
+				} else {
+					e.target.style.cursor = 'pointer';
+					e.target.style.opacity = '';
+				};
+			};
+		});
 		if(this.meta.auto) this.auto();
 		if(this.meta.navs) this.addButton();
 		if(this.meta.pugs) this.addPugs(0);

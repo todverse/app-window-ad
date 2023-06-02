@@ -17,6 +17,9 @@
   height: 300px; 
   background: #f5f7f8;
 }
+path:hover {
+  opacity: .7;
+}
 .ui-btn-success {
   --ui-btn-background: #bbed21;
   border-color: #bbed21;
