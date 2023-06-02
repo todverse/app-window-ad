@@ -120,7 +120,7 @@ class Slider {
 			});
 		};
 		this.pugin.style.position = 'relative';
-		this.pugin.style.bottom = '-90%';
+		this.pugin.style.bottom = '-80%';
 		this.pugin.style.textAlign = 'center';
 		this.pugin.style.padding = '0';
 		this.elem.appendChild(this.pugin);
